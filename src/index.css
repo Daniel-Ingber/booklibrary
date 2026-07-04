@@ -1,5 +1,84 @@
 @import "tailwindcss";
-@plugin "flowbite-react/plugin/tailwindcss";
+@import "flowbite-react/plugin/tailwindcss";
 @source "../.flowbite-react/class-list.json";
 
 @custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  --color-cream: #F6F2EB;
+  --color-cream-100: #FBF8F2;
+  --color-cream-300: #E8E0D2;
+
+  --color-paper: #FBF9F5;
+  --color-paper-100: #FFFFFF;
+  --color-paper-300: #F0ECE3;
+
+  --color-ink: #2B2622;
+  --color-ink-100: #4A423B;
+  --color-ink-300: #17140F;
+
+  --color-rust: #A85C3B;
+  --color-rust-100: #C77C58;
+  --color-rust-300: #7D4128;
+
+  --color-sage: #7A9B76;
+  --color-sage-100: #A3C29E;
+  --color-sage-300: #567552;
+
+  --color-gold: #C9A227;
+  --color-gold-100: #E0C563;
+  --color-gold-300: #9A7B1A;
+
+  --color-stone: #8A8177;
+  --color-stone-100: #B0A99F;
+  --color-stone-300: #6B6258;
+
+  --color-border: #E4DDD1;
+  --color-border-100: #EFE9DE;
+  --color-border-300: #D3C9B8;
+
+  --font-serif: 'Fraunces', serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-sans: 'Inter', sans-serif;
+}
+
+@layer components {
+  .text-h1 {
+    @apply font-serif font-semibold text-[3rem] tracking-[-0.01em] text-ink;
+  }
+  .text-h2 {
+    @apply font-serif font-medium text-xl text-ink;
+  }
+  .text-h3 {
+    @apply font-mono font-normal text-xs uppercase tracking-[0.04em] text-ink-100;
+  }
+  .text-description {
+    @apply font-sans font-normal text-base leading-[1.7] text-ink-100;
+  }
+  .text-eyebrow {
+    @apply font-mono font-normal text-xs uppercase tracking-[0.08em] text-stone;
+  }
+  .text-button {
+    @apply font-sans font-medium text-sm text-paper;
+  }
+  .text-header {
+    @apply font-mono font-normal text-xs uppercase tracking-[0.06em] text-stone;
+  }
+  .text-footer {
+    @apply font-sans font-normal text-sm text-ink-100;
+  }
+  .text-brand {
+    @apply font-serif font-semibold text-xl text-ink;
+  }
+  .text-meta {
+    @apply font-mono font-normal text-[0.7rem] text-stone;
+  }
+  .text-form-label {
+    @apply font-sans font-medium text-[0.8125rem] text-ink;
+  }
+  .text-form-input {
+    @apply font-sans font-normal text-[0.9375rem] text-ink;
+  }
+  .text-error {
+    @apply font-sans font-medium text-[0.8125rem] text-rust not-italic;
+  }
+}
