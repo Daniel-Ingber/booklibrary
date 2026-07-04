@@ -52,7 +52,7 @@
     @apply font-mono font-normal text-xs uppercase tracking-[0.04em] text-ink-100;
   }
   .text-description {
-    @apply font-sans font-normal text-base leading-[1.7] text-ink-100;
+    @apply font-mono font-normal text-base leading-[1.7] text-ink-100;
   }
   .text-eyebrow {
     @apply font-mono font-normal text-xs uppercase tracking-[0.08em] text-stone;
@@ -81,4 +81,8 @@
   .text-error {
     @apply font-sans font-medium text-[0.8125rem] text-rust not-italic;
   }
+}
+
+button {
+  @apply cursor-pointer;
 }
