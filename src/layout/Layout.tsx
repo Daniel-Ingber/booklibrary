@@ -5,11 +5,12 @@ import { useState } from "react";
 
 export default function Layout() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchCategory, setSearchCategory] = useState("title" as "title" | "author" | "description");
   return (
     <>
-      <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchCategory={searchCategory} setSearchCategory={setSearchCategory} />
       <main className="flex-1">
-        <App searchQuery={searchQuery} />
+        <App searchQuery={searchQuery} searchCategory={searchCategory} />
       </main>
       <Footer />
     </>

@@ -61,7 +61,7 @@
     @apply font-sans font-medium text-sm text-paper;
   }
   .text-header {
-    @apply font-mono font-normal text-xs uppercase tracking-[0.06em] text-stone;
+    @apply font-mono font-normal text-xs tracking-[0.06em] text-stone;
   }
   .text-footer {
     @apply font-sans font-normal text-sm text-ink-100;

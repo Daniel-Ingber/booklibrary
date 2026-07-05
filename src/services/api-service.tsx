@@ -3,7 +3,7 @@ import { BookResponse } from "../models/book-response";
 import { BookRequest } from "../models/book-request";
 
 const _axios = axios.create({
-  baseURL:"https://6a4136981ff1d27becc1596b.mockapi.io/api/",
+  baseURL:"https://6a4136981ff1d27becc1596b.mockapi.io/api",
   timeout: 10000,
   headers:{
     "Content-Type": "application/json",
@@ -12,7 +12,9 @@ const _axios = axios.create({
 });
 
 export const ApiService = {
-  getMovies: () => _axios.get<Array<BookResponse>>("/books"),
-  createMovie: (request:BookRequest) => _axios.post<BookResponse>("/books", request),
-  deleteMovie: (id:string) => _axios.delete<BookResponse>(`/books/${id}`),
+  getBooks: () => _axios.get<Array<BookResponse>>("/books"),
+  getBook: (id:string) => _axios.get<BookResponse>(`/books/${id}`),
+  createBook: (request:BookRequest) => _axios.post<BookResponse>("/books", request),
+  deleteBook: (id:string) => _axios.delete<BookResponse>(`/books/${id}`),
+  editBook: (id:string, request:BookRequest) => _axios.put<BookResponse>(`/books/${id}`, request),
 }

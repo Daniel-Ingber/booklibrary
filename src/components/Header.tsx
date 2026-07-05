@@ -6,14 +6,38 @@ import { GrainFilter } from "../components/Filters";
 interface HeaderProps {
   searchQuery: string;
   setSearchQuery: (value: string) => void;
+  searchCategory: "title" | "author" | "description";
+  setSearchCategory: (value: "title" | "author" | "description") => void;
 }
 
-export default function Header({ searchQuery, setSearchQuery }: HeaderProps) {
+export default function Header({
+  searchQuery,
+  setSearchQuery,
+  searchCategory,
+  setSearchCategory,
+}: HeaderProps) {
   return (
-    <header className="sticky top-0 z-99 mx-auto w-full">
+    <header className="sticky top-0 z-5 mx-auto w-full">
       <GrainFilter />
       <div className="flex gap-2 bg-stone-50 p-2">
-        <IoBookOutline className="text-stone" />
+        <select
+          value={searchCategory}
+          onChange={(e) =>
+            setSearchCategory(e.target.value as typeof searchCategory)
+          }
+          className="text-header relative w-fit appearance-none border-none bg-transparent text-center outline-none hover:cursor-pointer hover:font-bold"
+        >
+          <option value="title" className="bg-stone-200">
+            Title
+          </option>
+          <option value="author" className="bg-stone-200">
+            Author
+          </option>
+          <option value="description" className="bg-stone-200">
+            Description
+          </option>
+        </select>
+        <IoBookOutline className="text-stone mr-4 text-2xl" />
         <input
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
