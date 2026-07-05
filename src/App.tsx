@@ -78,14 +78,14 @@ export default function App({ searchQuery, searchCategory }: AppProps) {
   return (
     <div className="from-cream via-cream-100 to-cream-300 relative min-h-screen w-full bg-linear-to-b p-4">
       <GrainFilter />
-      <h1 className="text-h1 text-center">Welcome to the library</h1>
+      <h1 className="text-h1 text-center">Private library project</h1>
       <p className="text-meta text-center">
         This site is made for HackerU's React project requirements
       </p>
       {displayedBooks.length === 0 ? (
         <p className="text-error">No results found</p>
       ) : (
-        <div className="grid grid-cols-2 gap-16 p-16 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-16 p-16 md:grid-cols-3 lg:grid-cols-4">
           {displayedBooks.map((book) => (
             <Card
               key={book.id}
@@ -104,7 +104,7 @@ export default function App({ searchQuery, searchCategory }: AppProps) {
 
       <button
         onClick={() => setIsCreateOpen(true)}
-        className="bg-rust hover:bg-rust-300 fixed bottom-6 left-6 z-40 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg"
+        className="bg-rust/30 hover:bg-rust-300/30 fixed bottom-2 left-2 z-40 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg"
       >
         <PiPlusBold className="text-2xl" />
       </button>

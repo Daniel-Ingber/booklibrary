@@ -100,15 +100,16 @@ export default function Card({
       {showConfirm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
           <div className="bg-paper flex w-full max-w-sm flex-col gap-4 rounded-lg p-6">
-            <p>Delete "{title}"?</p>
+            <p className="text-eyebrow text-xs md:text-xl lg:text-2xl">Delete "{title}"?</p>
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setShowConfirm(false)}
                 disabled={isDeleting}
+                className="bg-paper border-stone rounded border px-2 py-1 text-meta hover:bg-stone-200 hover:font-bold"
               >
-                Cancel
+                <span>Cancel</span>
               </button>
-              <button onClick={deleteBook} disabled={isDeleting}>
+              <button className="bg-paper border-stone rounded border px-2 py-1 text-meta hover:bg-stone-200 hover:font-bold" onClick={deleteBook} disabled={isDeleting}>
                 {isDeleting ? "Deleting..." : "Confirm"}
               </button>
             </div>

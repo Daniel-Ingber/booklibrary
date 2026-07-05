@@ -55,7 +55,7 @@
     @apply font-mono font-normal text-base leading-[1.7] text-ink-100;
   }
   .text-eyebrow {
-    @apply font-mono font-normal text-xs uppercase tracking-[0.08em] text-stone;
+    @apply font-mono font-bold text-xs uppercase tracking-[0.08em] text-stone;
   }
   .text-button {
     @apply font-sans font-medium text-sm text-paper;
