@@ -1,3 +1,4 @@
+// Adds texture on backgrounds to make it look like paper.
 export function GrainFilter() {
   return (
     <>

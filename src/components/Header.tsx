@@ -10,6 +10,7 @@ interface HeaderProps {
   setSearchCategory: (value: "title" | "author" | "description") => void;
 }
 
+// Header hosts a Search bar for the library
 export default function Header({
   searchQuery,
   setSearchQuery,
@@ -37,7 +38,7 @@ export default function Header({
             Description
           </option>
         </select>
-        <IoBookOutline className="text-stone mr-4 text-2xl" />
+        <IoBookOutline className="text-stone mr-4 text-[24px]" />
         <input
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}

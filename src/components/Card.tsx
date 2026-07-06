@@ -5,7 +5,9 @@ import { MdOutlineEdit } from "react-icons/md";
 import { BookRequest } from "../models/book-request";
 import { BookResponse } from "../models/book-response";
 import { ApiService } from "../services/api-service";
+import { AnimatePresence, motion } from "motion/react";
 
+// Modal import
 const Modal = lazy(() => import("./Modal"));
 
 interface CardProps {
@@ -68,12 +70,30 @@ export default function Card({
         <p className="text-description line-clamp-3">{description}</p>
       </div>
       <div className="mt-auto flex items-center justify-between px-4 py-3">
-        <button onClick={switchFavorite}>
-          {favorite ? (
-            <IoIosHeart className="text-rust hover:text-rust-300 text-2xl" />
-          ) : (
-            <IoIosHeartEmpty className="text-ink-100 hover:text-stone text-2xl" />
-          )}
+        <button
+          onClick={switchFavorite}
+          className="relative h-6 w-6 overflow-hidden"
+        >
+          <AnimatePresence initial={false}>
+            <motion.span
+              key={favorite ? "filled" : "empty"}
+              initial={{
+                clipPath: "polygon(-40% 140%, -20% 140%, 60% -40%, 40% -40%)",
+              }}
+              animate={{
+                clipPath: "polygon(-40% 140%, 200% 140%, 280% -40%, 40% -40%)",
+              }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              {favorite ? (
+                <IoIosHeart className="text-rust hover:text-rust-300 text-2xl" />
+              ) : (
+                <IoIosHeartEmpty className="text-ink-100 hover:text-stone text-2xl" />
+              )}
+            </motion.span>
+          </AnimatePresence>
         </button>
         <div className="flex items-center gap-3">
           <button onClick={() => setIsOpen(true)}>
@@ -85,37 +105,59 @@ export default function Card({
         </div>
       </div>
 
-      {isOpen && (
-        <Modal
-          id={id}
-          title={title}
-          author={author}
-          description={description}
-          coverImage={coverImage}
-          isFavorite={favorite}
-          onClose={() => setIsOpen(false)}
-          onSave={onSave}
-        />
-      )}
-      {showConfirm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="bg-paper flex w-full max-w-sm flex-col gap-4 rounded-lg p-6">
-            <p className="text-eyebrow text-xs md:text-xl lg:text-2xl">Delete "{title}"?</p>
-            <div className="flex justify-end gap-2">
-              <button
-                onClick={() => setShowConfirm(false)}
-                disabled={isDeleting}
-                className="bg-paper border-stone rounded border px-2 py-1 text-meta hover:bg-stone-200 hover:font-bold"
-              >
-                <span>Cancel</span>
-              </button>
-              <button className="bg-paper border-stone rounded border px-2 py-1 text-meta hover:bg-stone-200 hover:font-bold" onClick={deleteBook} disabled={isDeleting}>
-                {isDeleting ? "Deleting..." : "Confirm"}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <Modal
+            id={id}
+            title={title}
+            author={author}
+            description={description}
+            coverImage={coverImage}
+            isFavorite={favorite}
+            onClose={() => setIsOpen(false)}
+            onSave={onSave}
+          />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {showConfirm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="bg-paper flex w-full max-w-sm flex-col gap-4 rounded-lg p-6"
+            >
+              <p className="text-eyebrow text-xs md:text-xl lg:text-2xl">
+                Delete "{title}"?
+              </p>
+              <div className="flex justify-end gap-2">
+                <button
+                  onClick={() => setShowConfirm(false)}
+                  disabled={isDeleting}
+                  className="bg-paper border-stone text-meta rounded border px-2 py-1 hover:bg-stone-200 hover:font-bold"
+                >
+                  <span>Cancel</span>
+                </button>
+                <button
+                  className="bg-paper border-stone text-meta rounded border px-2 py-1 hover:bg-stone-200 hover:font-bold"
+                  onClick={deleteBook}
+                  disabled={isDeleting}
+                >
+                  {isDeleting ? "Deleting..." : "Confirm"}
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

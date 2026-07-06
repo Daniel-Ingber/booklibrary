@@ -7,11 +7,13 @@ import { Spinner } from "flowbite-react";
 import { PiPlusBold } from "react-icons/pi";
 import { lazy } from "react";
 
-const Modal = lazy(() => import("./components/Modal"));
 interface AppProps {
   searchQuery: string;
   searchCategory: "title" | "author" | "description";
 }
+
+// Modal import
+const Modal = lazy(() => import("./components/Modal"));
 
 export default function App({ searchQuery, searchCategory }: AppProps) {
   const [books, setBooks] = useState<Array<BookResponse>>([]);
