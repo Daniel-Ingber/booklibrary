@@ -36,6 +36,7 @@ export default function Card({
   const [isDeleting, setIsDeleting] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
+  // Switches the favorite status of the book and updates it in the backend
   const switchFavorite = async () => {
     const next = !favorite;
     setFavorite(next);
@@ -49,6 +50,7 @@ export default function Card({
     await ApiService.editBook(id, book);
   };
 
+  // Deletes the book from the backend and calls the onDelete callback
   const deleteBook = async () => {
     setIsDeleting(true);
     await ApiService.deleteBook(id);
@@ -59,16 +61,21 @@ export default function Card({
 
   return (
     <div className="from-paper via-paper-100 to-paper-300 border-stone flex flex-col overflow-hidden rounded-lg border bg-gradient-to-b shadow-sm duration-150 hover:shadow-xl">
+      {/* Book cover image */}
       <img
         src={coverImage}
         alt={`image of the book: ${title}`}
         className="aspect-square w-full object-cover"
       />
+
+      {/* Book details */}
       <div className="flex flex-col gap-1 px-4 pt-3">
         <h2 className="text-h2">{title}</h2>
         <h3 className="text-h3 text-gray-500">{author}</h3>
         <p className="text-description line-clamp-3">{description}</p>
       </div>
+
+      {/* Action buttons */}
       <div className="mt-auto flex items-center justify-between px-4 py-3">
         <button
           onClick={switchFavorite}
@@ -105,6 +112,7 @@ export default function Card({
         </div>
       </div>
 
+      {/* Modal for editing the book */}
       <AnimatePresence>
         {isOpen && (
           <Modal
@@ -119,6 +127,8 @@ export default function Card({
           />
         )}
       </AnimatePresence>
+
+      {/* Confirmation modal for deleting the book */}
       <AnimatePresence>
         {showConfirm && (
           <motion.div

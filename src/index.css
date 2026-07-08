@@ -78,8 +78,11 @@
   .text-form-input {
     @apply font-sans font-normal text-[0.9375rem] text-ink;
   }
+  .form-necessary {
+    @apply relative before:content-['*'] before:text-rust-300 before:absolute before:-left-3 before:-top-1 before:text-[0.8125rem];
+  }
   .text-error {
-    @apply font-sans font-medium text-[0.8125rem] text-rust not-italic;
+    @apply font-mono font-normal text-[0.8125rem] text-rust not-italic;
   }
 }
 

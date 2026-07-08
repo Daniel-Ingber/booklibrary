@@ -20,7 +20,9 @@ export default function Header({
   return (
     <header className="sticky top-0 z-5 mx-auto w-full">
       <GrainFilter />
+      
       <div className="flex gap-2 bg-stone-50 p-2">
+        {/* Search category dropdown */}
         <select
           value={searchCategory}
           onChange={(e) =>
@@ -38,7 +40,10 @@ export default function Header({
             Description
           </option>
         </select>
+
         <IoBookOutline className="text-stone mr-4 text-[24px]" />
+        
+        {/* Search input */}
         <input
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -46,6 +51,8 @@ export default function Header({
           placeholder="Search..."
           className="text-header placeholder-stone relative w-full border-none bg-transparent outline-none"
         />
+
+        {/* Social links */}
         <a
           href="https://github.com/Daniel-Ingber"
           className="text-header text-xl duration-300 hover:scale-130"

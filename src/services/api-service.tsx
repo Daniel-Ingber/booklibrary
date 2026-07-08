@@ -13,9 +13,12 @@ const _axios = axios.create({
 
 export const ApiService = {
   getBooks: () => _axios.get<Array<BookResponse>>("/books"),
-  // for testing purposes
-  getBook: (id:string) => _axios.get<BookResponse>(`/books/${id}`),
   createBook: (request:BookRequest) => _axios.post<BookResponse>("/books", request),
   deleteBook: (id:string) => _axios.delete<BookResponse>(`/books/${id}`),
   editBook: (id:string, request:BookRequest) => _axios.put<BookResponse>(`/books/${id}`, request),
+  
+  // for testing purposes
+  sendError: () => _axios.get("/randomURLtoSend404"),
+  getBook: (id:string) => _axios.get<BookResponse>(`/books/${id}`),
+  // for testing purposes
 }
